@@ -71,6 +71,7 @@ const menuData = [
             { title: 'Sobiyet Baklawa', img: 'baklawa.jpg', sizes: [['500g','70 QAR','8 - 10 pieces'],['1kg','140 QAR','16 - 19 pieces']] },
             { title: 'Roll', img: 'baklawa.jpg', sizes: [['500g','80 QAR','10 - 13 pieces'],['1kg','160 QAR','16 - 20 pieces']] },
             { title: 'Cold Baklawa', img: 'baklawa.jpg', sizes: [['500g','65 QAR','9 - 12 pieces'],['1kg','130 QAR','20 - 22 pieces']] },
+            { title: 'Carrot Slice Baklawa', img: 'baklawa.jpg', sizes: [['120g','15 QAR','1 piece'],['1kg','125 QAR','7 - 8 pieces']] },
         ]
     },
 ];
