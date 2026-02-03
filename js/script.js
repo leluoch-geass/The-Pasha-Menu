@@ -61,10 +61,16 @@ const menuData = [
         ]
     },
     {
-        category: 'Baklava',
+        category: 'Pistachio Baklawa',
         items: [
-            { title: ' Durom Baklava', img: 'baklava.jpg', sizes: [['500g','65 QAR','20 - 24 pieces'],['1kg','135 QAR','40 - 44 pieces']] },
-            { title: ' Mix Baklava', img: 'baklava.jpg', sizes: [['500g','70 QAR','12 - 14 pieces'],['1kg','145 QAR','20 - 28 pieces']] },
+            { title: 'Durum Baklawa', img: 'baklawa.jpg', sizes: [['500g','67.50 QAR','20 - 24 pieces'],['1kg','135 QAR','40 - 44 pieces']] },
+            { title: 'Sweet Mix Baklawa', img: 'baklawa.jpg', sizes: [['500g','70 QAR','12 - 14 pieces'],['1kg','145 QAR','20 - 28 pieces']] },
+            { title: 'Pistacio Baklawa', img: 'baklawa.jpg', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','15 - 18 pieces']] },
+            { title: 'Walnut Padish Baklawa', img: 'baklawa.jpg', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','20 - 23 pieces']] },
+            { title: 'Mussel Baklawa', img: 'baklawa.jpg', sizes: [['500g','75 QAR','12 - 15 pieces'],['1kg','150 QAR','20 - 23 pieces']] },
+            { title: 'Sobiyet Baklawa', img: 'baklawa.jpg', sizes: [['500g','70 QAR','8 - 10 pieces'],['1kg','140 QAR','16 - 19 pieces']] },
+            { title: 'Roll', img: 'baklawa.jpg', sizes: [['500g','80 QAR','10 - 13 pieces'],['1kg','160 QAR','16 - 20 pieces']] },
+            { title: 'Cold Baklawa', img: 'baklawa.jpg', sizes: [['500g','65 QAR','9 - 12 pieces'],['1kg','130 QAR','20 - 22 pieces']] },
         ]
     },
 ];
