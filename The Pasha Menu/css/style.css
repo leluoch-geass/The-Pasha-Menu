@@ -1,0 +1,110 @@
+/* ================= RESET ================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================= PAGE BASE ================= */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* ================= MAIN CONTAINER ================= */
+.container {
+    max-width: 420px;
+    margin: auto;
+    padding: 15px;
+}
+
+/* ================= LOGO ================= */
+.logo img {
+    width: 120px;
+    display: block;
+    margin: 10px auto 20px;
+}
+
+/* ================= CATEGORY TITLE ================= */
+.category {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* ================= MENU CARD ================= */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/* ================= ITEM IMAGE ================= */
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+/* ================= CONTENT ================= */
+.content {
+    padding: 12px;
+}
+
+/* ================= TAP HINT ================= */
+.tap {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+/* ================= DETAILS (EXPANDABLE) ================= */
+.details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+/* Expanded state */
+.card.active .details {
+    max-height: 300px;
+}
+
+/* ================= PRICE ROWS ================= */
+.row {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+/* Each column */
+.row span {
+    flex: 1;
+}
+
+/* Size */
+.row span:nth-child(1) {
+    text-align: left;
+}
+
+/* Price (CENTERED) */
+.row span:nth-child(2) {
+    text-align: center;
+    font-weight: bold;
+    color: #c98b2b;
+}
+
+/* Persons */
+.row span:nth-child(3) {
+    text-align: right;
+    color: #555;
+}
