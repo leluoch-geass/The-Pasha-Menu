@@ -41,6 +41,45 @@ body::before {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    background: rgba(244,244,244,0.95);
+    padding: 8px 6px;
+    z-index: 5;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+/* Make category able to hold a small inline logo */
+.category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Floating logo used for animation */
+.logo-fly {
+    position: fixed;
+    z-index: 1200;
+    pointer-events: none;
+    width: 120px;
+    height: auto;
+    transform-origin: top left;
+    transition: transform 0.5s ease, opacity 0.25s ease;
+    will-change: transform;
+}
+
+/* Small logo shown inside sticky category */
+.header-logo {
+    width: 36px;
+    height: auto;
+    margin-right: 8px;
+    flex: 0 0 auto;
+}
+
+/* Active state when animation finishes */
+.header-logo--active {
+    transform: scale(1.06);
+    transition: transform 0.2s ease;
 }
 
 /* ================= MENU CARD ================= */

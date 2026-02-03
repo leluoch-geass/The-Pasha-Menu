@@ -137,4 +137,128 @@ function renderMenu(containerId = 'menu') {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => renderMenu());
+document.addEventListener('DOMContentLoaded', () => {
+    renderMenu();
+
+    // add small logo to each category header so every category shows a logo
+    const mainLogo = document.querySelector('.logo img');
+    const logoSrc = mainLogo ? mainLogo.src : 'img/logoTrans.png';
+    document.querySelectorAll('.category').forEach(cat => {
+        const img = document.createElement('img');
+        img.src = logoSrc;
+        img.className = 'header-logo';
+        cat.prepend(img);
+    });
+    if (!mainLogo) return;
+
+    let currentCategory = null;
+    let isAnimating = false;
+    const duration = 500; // ms (user requested 0.5s)
+
+    function createFly(src, rect) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'logo-fly';
+        img.style.left = rect.left + 'px';
+        img.style.top = rect.top + 'px';
+        img.style.width = rect.width + 'px';
+        img.style.height = rect.height + 'px';
+        img.style.transform = 'translate(0,0)';
+        img.style.opacity = '1';
+        document.body.appendChild(img);
+        return img;
+    }
+
+    function animateToCategory(targetCat) {
+        if (!targetCat || isAnimating) return;
+        const sourceRect = mainLogo.getBoundingClientRect();
+        const targetRect = targetCat.getBoundingClientRect();
+
+        const fly = createFly(mainLogo.src, sourceRect);
+        isAnimating = true;
+
+        const targetLeft = targetRect.left + 6;
+        const targetTop = targetRect.top + (targetRect.height - sourceRect.height) / 2;
+        const dx = targetLeft - sourceRect.left;
+        const dy = targetTop - sourceRect.top;
+
+        fly.getBoundingClientRect();
+        fly.style.transition = `transform ${duration}ms ease, opacity ${duration/2}ms ease`;
+        fly.style.transform = `translate(${dx}px, ${dy}px) scale(0.35)`;
+
+        const onEnd = (e) => {
+            if (e.propertyName !== 'transform') return;
+            fly.removeEventListener('transitionend', onEnd);
+            // mark target header logo active (do not remove logos since each category has one)
+            document.querySelectorAll('.header-logo').forEach(el => el.classList.remove('header-logo--active'));
+            const targetSmall = targetCat.querySelector('.header-logo');
+            if (targetSmall) targetSmall.classList.add('header-logo--active');
+            fly.remove();
+            isAnimating = false;
+            currentCategory = targetCat;
+            // remove active class after a short delay so it can be reapplied on future animations
+            setTimeout(() => { if (targetSmall) targetSmall.classList.remove('header-logo--active'); }, 700);
+        };
+
+        fly.addEventListener('transitionend', onEnd);
+        setTimeout(() => { if (isAnimating) { fly.remove(); isAnimating=false; } }, duration + 400);
+    }
+
+    function animateBackToLogo() {
+        const headerLogo = document.querySelector('.header-logo');
+        if (!headerLogo || isAnimating) return;
+        const sourceRect = headerLogo.getBoundingClientRect();
+        const targetRect = mainLogo.getBoundingClientRect();
+        const fly = createFly(mainLogo.src, sourceRect);
+        isAnimating = true;
+
+        const dx = targetRect.left - sourceRect.left;
+        const dy = targetRect.top - sourceRect.top;
+
+        fly.getBoundingClientRect();
+        fly.style.transition = `transform ${duration}ms ease, opacity ${duration/2}ms ease`;
+        fly.style.transform = `translate(${dx}px, ${dy}px) scale(${targetRect.width / sourceRect.width})`;
+
+        const onEnd = (e) => {
+            if (e.propertyName !== 'transform') return;
+            fly.removeEventListener('transitionend', onEnd);
+            // remove active state from header logos (keep logos present)
+            document.querySelectorAll('.header-logo').forEach(el => el.classList.remove('header-logo--active'));
+            fly.remove();
+            isAnimating = false;
+            currentCategory = null;
+        };
+
+        fly.addEventListener('transitionend', onEnd);
+        setTimeout(() => { if (isAnimating) { fly.remove(); isAnimating=false; } }, duration + 400);
+    }
+
+    // Use IntersectionObserver to reliably detect when a category hits the top
+    const categories = document.querySelectorAll('.category');
+    const ioOptions = {
+        root: null,
+        threshold: [0],
+        rootMargin: '0px 0px -99% 0px' // triggers when the header reaches top
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.boundingClientRect.top <= 0 && entry.isIntersecting) {
+                // category reached top
+                const cat = entry.target;
+                if (cat !== currentCategory) animateToCategory(cat);
+            }
+        });
+
+        // detect if none are intersecting at top -> we're above menu
+        const anyAtTop = Array.from(categories).some(c => {
+            const r = c.getBoundingClientRect();
+            return r.top <= 0 && r.bottom > 0;
+        });
+        if (!anyAtTop && currentCategory) {
+            animateBackToLogo();
+        }
+    }, ioOptions);
+
+    categories.forEach(c => observer.observe(c));
+});
