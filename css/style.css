@@ -17,8 +17,8 @@ body::before {
     background-image: url("../img/logoTrans.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 640px;
-    opacity: 0.05;
+    background-size: 550px;
+    opacity: 0.20;
     z-index: -1;
 }
 
@@ -45,7 +45,7 @@ body::before {
 
 /* ================= MENU CARD ================= */
 .card {
-    background: #fff;
+    background: rgba(255,255,255,0.85);
     border-radius: 16px;
     margin-bottom: 14px;
     overflow: hidden;
