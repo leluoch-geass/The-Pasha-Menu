@@ -77,15 +77,102 @@ const menuData = [
         {
         category: 'Cakes',
         items: [
-            { title: 'Lotus', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Lotus', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
             { title: 'White Chocolate', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Dark Chocolate', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Caramel', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Dark Chocolate', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
+            { title: 'Caramel', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
             { title: 'Chocolate with Nut Sauce', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Strawberry Princess', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Crunchy Pistachio', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Strawberry Princess', img: 'Cake.jpg', sizes: [['Mini','25 QAR','1 person'],['Small','65 QAR','4 persons'],['Medium','85 QAR','6 persons']] },
+            { title: 'Crunchy Pistachio', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons']] },
+            { title: 'Lady Bug', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person']] },
         ]
     },
+    {
+        category: 'Slice Cakes',
+            items: [
+            { title: 'Mosaic Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','15 QAR','1 person']] },
+            { title: 'Tiramisu Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Carrot Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','17 QAR','1 person']] },
+            { title: 'Honey Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
+            ]
+    },
+    {
+        category: 'Slice Cheese Cakes',
+        items: [
+            { title: 'San Sebastian', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Mango', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Blueberry', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Lemon', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+        ]
+    },
+    {
+        category: 'Milk Deserts',
+        items: [
+            { title: 'Trilece', img: 'milk-desert.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Sutlac', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Strawberry Magnolia', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Lotus Dream', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Kazandibi', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Profiteroles', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+        ]
+    },
+    {  
+        category: 'Cookies',
+        items: [
+            { title: 'Mix Sweet Cookies', img: 'cookies.jpg', sizes: [['250g','21.25 QAR','10 - 14 pieces'],['500g','42.50 QAR','20 - 24 pieces'],['1kg','85 QAR','40 - 48 pieces']] },
+            { title: 'Mix Salty Cookies', img: 'cookies.jpg', sizes: [['250g','17.50 QAR','10 - 14 pieces'],['500g','35 QAR','20 - 24 pieces'],['1kg','70 QAR','40 - 48 pieces']] },
+            { title: 'Mix Special Sweet Cookies', img: 'cookies.jpg', sizes: [['250g','25 QAR','10 - 14 pieces'],['500g','50 QAR','20 - 24 pieces'],['1kg','100 QAR','40 - 48 pieces']] },
+            { title: 'Macaron', img: 'cookies.jpg', sizes: [['1 Box','25 QAR','6 pieces']] },
+        ]
+    },
+    {
+        category: 'Turkish Delight',
+        items: [
+            { title: 'Mix Turkish Delight', img: 'turkish-delight.jpg', sizes: [['250g','25 QAR','-'],['500g','50 QAR','-'],['1kg','100 QAR','-']] },
+        ]
+    },
+    {
+        category: 'Breads',
+        items: [
+            { title: 'Turkish Simit', img: 'bread.jpg', sizes: [['1 Piece','5 QAR','1 person']] },
+            { title: 'Kashkaval Cheese', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 persons']] },
+            { title: 'Potato Pocaga', img: 'bread.jpg', sizes: [['1 Piece','10 QAR','1 person']] },
+            { title: 'Olive Pocaga', img: 'bread.jpg', sizes: [['1 Piece','12 QAR','1 person']] },
+            { title: 'Borek', img: 'bread.jpg', sizes: [['1 Slice','13 QAR','1 person']] },
+
+        ]
+    },
+    {
+        category: 'Cold Drinks',
+        items: [
+            { title: 'Iced Lattee', img: 'cold-drink.jpg', sizes: [['1 Cap','15 QAR','1 person']] },
+            { title: 'Iced Spanish Lattee', img: 'cold-drink.jpg', sizes: [['1 Cap','17 QAR','1 person']] },
+            { title: 'Iced Americano', img: 'cold-drink.jpg', sizes: [['1 Cap','14 QAR','1 person']] },
+            { title: 'Coca Cola', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Fanta', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Sprite', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Mineral Water', img: 'cold-drink.jpg', sizes: [['1 Bottle','3 QAR','1 person']] },
+            { title: 'Ayran', img: 'cold-drink.jpg', sizes: [['1 Bottle','5 QAR','1 person']] },
+
+        ]
+    },
+    {
+        category: 'Hot Drinks',
+        items: [
+            { title: 'Turkish Tea', img: 'hot-drink.jpg', sizes: [['1 Cup','3 QAR','1 person']] },
+            { title: 'Double Turkish Tea', img: 'hot-drink.jpg', sizes: [['1 Cup','5 QAR','1 person']] },
+            { title: 'Turkish Coffee', img: 'hot-drink.jpg', sizes: [['1 Cup','10 QAR','1 person']] },
+            { title: 'Double Turkish Coffee', img: 'hot-drink.jpg', sizes: [['1 Cup','20 QAR','1 person']] },
+            { title: 'Espresso', img: 'hot-drink.jpg', sizes: [['1 Cup','10 QAR','1 person']] },
+            { title: 'Double Espresso', img: 'hot-drink.jpg', sizes: [['1 Cup','12 QAR','1 person']] },
+            { title: 'Americano', img: 'hot-drink.jpg', sizes: [['1 Cup','12 QAR','1 person']] },
+            { title: 'Cappuccino', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Lattee', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Spanish Lattee', img: 'hot-drink.jpg', sizes: [['1 Cup','17 QAR','1 person']] },
+            { title: 'Cortado', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Flat White', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
+        ]   
+    }
 ];
 
 function createCard(item) {
