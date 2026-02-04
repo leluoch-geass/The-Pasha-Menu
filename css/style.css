@@ -92,6 +92,128 @@ body::before {
     cursor: pointer;
 }
 
+/* Categories grid (home screen) */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 6px 0 20px;
+}
+
+.category-tile {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    border: none;
+}
+
+.category-tile:active { transform: scale(0.98); }
+
+.category-tile .tile-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.category-tile .tile-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Panel that opens for a category */
+.category-panel {
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.panel-header h2 { font-size: 18px; margin: 0; }
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.panel-inner {
+    padding: 12px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    min-height: 0; /* allow flex child to shrink and enable scrolling */
+}
+
+/* Category item list inside panel */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.list-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list-item .title { font-weight: 600; color: #222; }
+.list-item .chev { font-size: 18px; color: #888; }
+.list-item:active { transform: scale(0.997); }
+
+.category-list .card {
+    margin: 8px 0 12px;
+}
+
+/* Cards inside panel start slightly down & faded, then slide up on open */
+.panel-inner .card {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease;
+}
+.category-panel.open .panel-inner .card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Backdrop to dim page when panel is open */
+.panel-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    transition: opacity 320ms ease;
+    z-index: 2400;
+}
+.panel-backdrop.visible { opacity: 1; }
+
+@media (min-width: 480px) {
+    .categories-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
 /* ================= ITEM IMAGE ================= */
 .card img {
     width: 100%;

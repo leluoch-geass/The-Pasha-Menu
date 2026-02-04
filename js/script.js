@@ -237,138 +237,156 @@ function renderMenu(containerId = 'menu') {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    menuData.forEach(group => {
-        const h2 = document.createElement('h2');
-        h2.className = 'category';
-        h2.textContent = group.category;
-        container.appendChild(h2);
+    // render as a grid of category tiles (app-home style)
+    container.innerHTML = '';
+    const grid = document.createElement('div');
+    grid.className = 'categories-grid';
 
-        group.items.forEach(item => container.appendChild(createCard(item)));
+    menuData.forEach((group, idx) => {
+        const tile = document.createElement('button');
+        tile.className = 'category-tile';
+        tile.type = 'button';
+
+        const img = document.createElement('img');
+        img.className = 'tile-img';
+        img.src = (group.items && group.items[0] && group.items[0].img) ? group.items[0].img : 'img/logoTrans.png';
+        img.alt = group.category;
+
+        const title = document.createElement('div');
+        title.className = 'tile-title';
+        title.textContent = group.category;
+
+        tile.appendChild(img);
+        tile.appendChild(title);
+        tile.dataset.index = idx;
+
+        grid.appendChild(tile);
     });
+
+    container.appendChild(grid);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     renderMenu();
 
-    // add small logo to each category header so every category shows a logo
-    const mainLogo = document.querySelector('.logo img');
-    const logoSrc = mainLogo ? mainLogo.src : 'img/logoTrans.png';
-    document.querySelectorAll('.category').forEach(cat => {
-        const img = document.createElement('img');
-        img.src = logoSrc;
-        img.className = 'header-logo';
-        cat.prepend(img);
+    // Open a category in a full-screen animated panel (app style)
+    function openCategoryPanel(index, tileEl) {
+        const rect = tileEl.getBoundingClientRect();
+        const panel = document.createElement('div');
+        panel.className = 'category-panel';
+        Object.assign(panel.style, {
+            position: 'fixed',
+            left: rect.left + 'px',
+            top: rect.top + 'px',
+            width: rect.width + 'px',
+            height: rect.height + 'px',
+            transition: 'all 400ms cubic-bezier(.2,.8,.2,1)',
+            zIndex: 2500,
+            borderRadius: '16px',
+        });
+
+        const header = document.createElement('div'); header.className = 'panel-header';
+        const back = document.createElement('button'); back.className = 'close-btn'; back.innerText = '←';
+        back.addEventListener('click', () => closePanel(panel, rect));
+        header.appendChild(back);
+        const h = document.createElement('h2'); h.textContent = menuData[index].category; header.appendChild(h);
+        panel.appendChild(header);
+
+        const inner = document.createElement('div'); inner.className = 'panel-inner';
+
+        // create a simple list of item titles for this category
+        const list = document.createElement('div'); list.className = 'category-list';
+        menuData[index].items.forEach(item => {
+            const li = document.createElement('div'); li.className = 'list-item';
+            const t = document.createElement('div'); t.className = 'title'; t.textContent = item.title;
+            const c = document.createElement('div'); c.className = 'chev'; c.textContent = '›';
+            li.appendChild(t); li.appendChild(c);
+
+            // toggle full card view under the title when clicked
+            li.addEventListener('click', () => {
+                const next = li.nextElementSibling;
+                if (next && next.classList && next.classList.contains('card')) {
+                    // already expanded -> collapse
+                    next.remove();
+                    return;
+                }
+                // insert full card after the title
+                const card = createCard(item);
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(6px)';
+                li.after(card);
+                // animate card in
+                requestAnimationFrame(() => {
+                    card.style.transition = 'transform 220ms ease, opacity 220ms ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            list.appendChild(li);
+        });
+
+        inner.appendChild(list);
+        panel.appendChild(inner);
+
+        // backdrop
+        const backdrop = document.createElement('div'); backdrop.className = 'panel-backdrop';
+        // allow clicking backdrop to close
+        backdrop.addEventListener('click', () => closePanel(panel, rect));
+        document.body.appendChild(backdrop);
+        document.body.appendChild(panel);
+
+        // animate to full screen
+        requestAnimationFrame(() => {
+            backdrop.classList.add('visible');
+            Object.assign(panel.style, { left: '0px', top: '0px', width: '100vw', height: '100vh', borderRadius: '0px' });
+        });
+
+        // after panel transition finishes, reveal inner cards with JS stagger
+        setTimeout(() => {
+            panel.classList.add('open');
+            const cards = panel.querySelectorAll('.card');
+            const tTrans = 'transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease';
+            cards.forEach((c, i) => {
+                c.style.opacity = '0';
+                c.style.transform = 'translateY(12px)';
+                c.style.transition = tTrans;
+                setTimeout(() => {
+                    c.style.opacity = '1';
+                    c.style.transform = 'translateY(0)';
+                }, 60 + i * 45);
+            });
+        }, 420);
+    }
+
+    function closePanel(panel, fromRect) {
+        // hide inner content then animate back to tile position
+        panel.classList.remove('open');
+        const cards = panel.querySelectorAll('.card');
+        cards.forEach(c => { c.style.transitionDelay = '0ms'; });
+        const backdrop = document.querySelector('.panel-backdrop');
+        if (backdrop) backdrop.classList.remove('visible');
+
+        // animate back to tile position
+        requestAnimationFrame(() => {
+            Object.assign(panel.style, { left: fromRect.left + 'px', top: fromRect.top + 'px', width: fromRect.width + 'px', height: fromRect.height + 'px', borderRadius: '16px' });
+        });
+
+        panel.addEventListener('transitionend', function onEnd(e) {
+            if (!['width','height','left','top'].includes(e.propertyName)) return;
+            panel.removeEventListener('transitionend', onEnd);
+            if (backdrop) backdrop.remove();
+            panel.remove();
+        });
+    }
+
+    // attach click and hover handlers to tiles now that openCategoryPanel is defined
+    document.querySelectorAll('.category-tile').forEach(tile => {
+        const idx = Number(tile.dataset.index);
+        tile.addEventListener('click', () => openCategoryPanel(idx, tile));
+        tile.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+        });
+        tile.addEventListener('mouseleave', () => { tile.style.transform = ''; });
     });
-    if (!mainLogo) return;
-
-    let currentCategory = null;
-    let isAnimating = false;
-    const duration = 500; // ms (user requested 0.5s)
-
-    function createFly(src, rect) {
-        const img = document.createElement('img');
-        img.src = src;
-        img.className = 'logo-fly';
-        img.style.left = rect.left + 'px';
-        img.style.top = rect.top + 'px';
-        img.style.width = rect.width + 'px';
-        img.style.height = rect.height + 'px';
-        img.style.transform = 'translate(0,0)';
-        img.style.opacity = '1';
-        document.body.appendChild(img);
-        return img;
-    }
-
-    function animateToCategory(targetCat) {
-        if (!targetCat || isAnimating) return;
-        const sourceRect = mainLogo.getBoundingClientRect();
-        const targetRect = targetCat.getBoundingClientRect();
-
-        const fly = createFly(mainLogo.src, sourceRect);
-        isAnimating = true;
-
-        const targetLeft = targetRect.left + 6;
-        const targetTop = targetRect.top + (targetRect.height - sourceRect.height) / 2;
-        const dx = targetLeft - sourceRect.left;
-        const dy = targetTop - sourceRect.top;
-
-        fly.getBoundingClientRect();
-        fly.style.transition = `transform ${duration}ms ease, opacity ${duration/2}ms ease`;
-        fly.style.transform = `translate(${dx}px, ${dy}px) scale(0.35)`;
-
-        const onEnd = (e) => {
-            if (e.propertyName !== 'transform') return;
-            fly.removeEventListener('transitionend', onEnd);
-            // mark target header logo active (do not remove logos since each category has one)
-            document.querySelectorAll('.header-logo').forEach(el => el.classList.remove('header-logo--active'));
-            const targetSmall = targetCat.querySelector('.header-logo');
-            if (targetSmall) targetSmall.classList.add('header-logo--active');
-            fly.remove();
-            isAnimating = false;
-            currentCategory = targetCat;
-            // remove active class after a short delay so it can be reapplied on future animations
-            setTimeout(() => { if (targetSmall) targetSmall.classList.remove('header-logo--active'); }, 700);
-        };
-
-        fly.addEventListener('transitionend', onEnd);
-        setTimeout(() => { if (isAnimating) { fly.remove(); isAnimating=false; } }, duration + 400);
-    }
-
-    function animateBackToLogo() {
-        const headerLogo = document.querySelector('.header-logo');
-        if (!headerLogo || isAnimating) return;
-        const sourceRect = headerLogo.getBoundingClientRect();
-        const targetRect = mainLogo.getBoundingClientRect();
-        const fly = createFly(mainLogo.src, sourceRect);
-        isAnimating = true;
-
-        const dx = targetRect.left - sourceRect.left;
-        const dy = targetRect.top - sourceRect.top;
-
-        fly.getBoundingClientRect();
-        fly.style.transition = `transform ${duration}ms ease, opacity ${duration/2}ms ease`;
-        fly.style.transform = `translate(${dx}px, ${dy}px) scale(${targetRect.width / sourceRect.width})`;
-
-        const onEnd = (e) => {
-            if (e.propertyName !== 'transform') return;
-            fly.removeEventListener('transitionend', onEnd);
-            // remove active state from header logos (keep logos present)
-            document.querySelectorAll('.header-logo').forEach(el => el.classList.remove('header-logo--active'));
-            fly.remove();
-            isAnimating = false;
-            currentCategory = null;
-        };
-
-        fly.addEventListener('transitionend', onEnd);
-        setTimeout(() => { if (isAnimating) { fly.remove(); isAnimating=false; } }, duration + 400);
-    }
-
-    // Use IntersectionObserver to reliably detect when a category hits the top
-    const categories = document.querySelectorAll('.category');
-    const ioOptions = {
-        root: null,
-        threshold: [0],
-        rootMargin: '0px 0px -99% 0px' // triggers when the header reaches top
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.boundingClientRect.top <= 0 && entry.isIntersecting) {
-                // category reached top
-                const cat = entry.target;
-                if (cat !== currentCategory) animateToCategory(cat);
-            }
-        });
-
-        // detect if none are intersecting at top -> we're above menu
-        const anyAtTop = Array.from(categories).some(c => {
-            const r = c.getBoundingClientRect();
-            return r.top <= 0 && r.bottom > 0;
-        });
-        if (!anyAtTop && currentCategory) {
-            animateBackToLogo();
-        }
-    }, ioOptions);
-
-    categories.forEach(c => observer.observe(c));
 });
