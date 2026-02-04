@@ -209,10 +209,6 @@ function createCard(item) {
     h3.textContent = item.title;
     content.appendChild(h3);
 
-    const tap = document.createElement('p');
-    tap.className = 'tap';
-    tap.textContent = 'Tap to view sizes & prices';
-    content.appendChild(tap);
 
     const details = document.createElement('div');
     details.className = 'details';
@@ -311,6 +307,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { if (el && el.parentNode) el.remove(); }, 200);
         }
 
+        // animate replacing a card with its list-item (title only)
+        function animateReplaceWithList(el, catIdx, itemIdx) {
+            if (!el) return;
+            el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(6px)';
+            setTimeout(() => {
+                const newLi = makeListItem(catIdx, itemIdx);
+                if (el.parentNode) el.replaceWith(newLi);
+            }, 200);
+        }
+
         // create a simple list of item titles for this category
         const list = document.createElement('div'); list.className = 'category-list';
 
@@ -351,6 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.dataset.itemIndex = String(itemIdx);
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(6px)';
+                // clicking the expanded card collapses it back to the title-only
+                card.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    // replace with list item
+                    animateReplaceWithList(card, catIdx, itemIdx);
+                }, { capture: true });
                 li.replaceWith(card);
                 // immediately expand details so sizes & prices are visible
                 card.classList.add('active');
