@@ -94,6 +94,7 @@ const menuData = [
             { title: 'Tiramisu Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
             { title: 'Carrot Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','17 QAR','1 person']] },
             { title: 'Honey Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Chocolate Brownie', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
             ]
     },
     {
@@ -154,6 +155,7 @@ const menuData = [
             { title: 'Iced Lattee', img: 'img/logoTrans.png', sizes: [['1 Cap','15 QAR','1 person']] },
             { title: 'Iced Spanish Lattee', img: 'cold-drink.jpg', sizes: [['1 Cap','17 QAR','1 person']] },
             { title: 'Iced Americano', img: 'cold-drink.jpg', sizes: [['1 Cap','14 QAR','1 person']] },
+            { title: 'Hand Made Lemonade', img: 'cold-drink.jpg', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
             { title: 'Coca Cola', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Fanta', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Sprite', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
