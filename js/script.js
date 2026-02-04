@@ -55,7 +55,7 @@ const menuData = [
             { title: 'Nutella Kunafe', img: 'img/kunafe/Nkunafe.png', sizes: [['Small','20 QAR','1 person'],['Medium','40 QAR','2 persons'],['Large','65 QAR','4 persons']] },
             { title: 'Qhasta Kunafe', img: 'img/kunafe/Qkunafe.png', sizes: [['Small','15 QAR','1 person'],['Medium','25 QAR','2 persons'],['Large','50 QAR','4 persons']] },
             { title: 'Pasha Kunafe', img: 'img/kunafe/Pakunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
-            { title: 'Pistacio Kunafe', img: 'img/kunafe/Pikunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','50 QAR','2 persons'],['Large','100 QAR','4 persons']] },
+            { title: 'Pistacio Kunafe', img: 'img/kunafe/Pkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','50 QAR','2 persons'],['Large','100 QAR','4 persons']] },
             { title: 'Pistacio Cheese Kunafe', img: 'img/kunafe/PCkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','120 QAR','4 persons']] },
             { title: 'Billuriye Kunafe', img: 'img/kunafe/Bkunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
         ]
