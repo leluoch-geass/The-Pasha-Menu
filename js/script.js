@@ -172,6 +172,16 @@ const menuData = [
             { title: 'Cortado', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
             { title: 'Flat White', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
         ]   
+    },
+    {
+        category: 'Ice Cream',
+        items: [
+            { title: 'Vanilla Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Chocolate Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Strawberry Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Mango Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Pistachio Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+        ]
     }
 ];
 
