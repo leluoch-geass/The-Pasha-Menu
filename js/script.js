@@ -81,10 +81,10 @@ const menuData = [
             { title: 'Lotus', img: 'img/logoTrans.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
             { title: 'White Chocolate', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
             { title: 'Dark Chocolate', img: 'img/Cake/DCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
-            { title: 'Chocolate with Nut Sauce', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Chocolate with Nut Sauce', img: 'img/Cake/Ncake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
             { title: 'Strawberry Princess', img: 'Cake.jpg', sizes: [['Mini','25 QAR','1 person'],['Small','65 QAR','4 persons'],['Medium','85 QAR','6 persons']] },
             { title: 'Crunchy Pistachio', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons']] },
-            { title: 'Lady Bug', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person']] },
+            { title: 'Lady Bug', img: 'img/Cake/LBcake.png', sizes: [['Mini','20 QAR','1 person']] },
         ]
     },
     {
