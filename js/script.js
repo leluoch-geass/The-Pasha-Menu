@@ -254,7 +254,20 @@ function renderMenu(containerId = 'menu') {
 
         const img = document.createElement('img');
         img.className = 'tile-img';
-        img.src = (group.items && group.items[0] && group.items[0].img) ? group.items[0].img : 'img/logoTrans.png';
+        // determine tile image from category folder
+        let tileSrc = 'img/logoTrans.png';
+        if (group.items && group.items[0] && group.items[0].img) {
+            const firstImg = group.items[0].img;
+            if (firstImg.includes('/')) {
+                // already a path (e.g. img/kunafe/file.png)
+                tileSrc = firstImg;
+            } else {
+                // build path using slugified category name
+                const slug = group.category.toLowerCase().replace(/\s+/g, '-');
+                tileSrc = `img/${slug}/${firstImg}`;
+            }
+        }
+        img.src = tileSrc;
         img.alt = group.category;
         img.onerror = () => { img.onerror = null; img.src = 'img/logoTrans.png'; };
 
