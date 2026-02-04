@@ -198,8 +198,9 @@ function createCard(item) {
     card.className = 'card';
 
     const img = document.createElement('img');
-    img.src = item.img;
+    img.src = item.img || 'img/logoTrans.png';
     img.alt = item.title;
+    img.onerror = () => { img.onerror = null; img.src = 'img/logoTrans.png'; };
     card.appendChild(img);
 
     const content = document.createElement('div');
@@ -255,6 +256,7 @@ function renderMenu(containerId = 'menu') {
         img.className = 'tile-img';
         img.src = (group.items && group.items[0] && group.items[0].img) ? group.items[0].img : 'img/logoTrans.png';
         img.alt = group.category;
+        img.onerror = () => { img.onerror = null; img.src = 'img/logoTrans.png'; };
 
         const title = document.createElement('div');
         title.className = 'tile-title';
