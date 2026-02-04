@@ -135,9 +135,15 @@ const menuData = [
         category: 'Breads',
         items: [
             { title: 'Turkish Simit', img: 'img/logoTrans.png', sizes: [['1 Piece','5 QAR','1 person']] },
-            { title: 'Kashkaval Cheese', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 persons']] },
-            { title: 'Potato Pocaga', img: 'bread.jpg', sizes: [['1 Piece','10 QAR','1 person']] },
-            { title: 'Olive Pocaga', img: 'bread.jpg', sizes: [['1 Piece','12 QAR','1 person']] },
+            { title: 'Kashkaval Cheese Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 persons']] },
+            { title: 'Feta Cheese Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Plain Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Olive Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Potato Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Potatoes', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Olive', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Plain Bagel', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Kashkaval Cheese', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
             { title: 'Borek', img: 'bread.jpg', sizes: [['1 Slice','13 QAR','1 person']] },
 
         ]
@@ -151,8 +157,8 @@ const menuData = [
             { title: 'Coca Cola', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Fanta', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Sprite', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Mineral Water', img: 'cold-drink.jpg', sizes: [['1 Bottle','3 QAR','1 person']] },
-            { title: 'Ayran', img: 'cold-drink.jpg', sizes: [['1 Bottle','5 QAR','1 person']] },
+            { title: 'Rayyan Natural Water', img: 'cold-drink.jpg', sizes: [['1 Bottle','3 QAR','1 person']] },
+            { title: 'Beypazari', img: 'cold-drink.jpg', sizes: [['1 Bottle','5 QAR','1 person']] },
 
         ]
     },
