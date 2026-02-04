@@ -294,27 +294,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const inner = document.createElement('div'); inner.className = 'panel-inner';
 
+        // helper to animate removing a card
+        function animateRemove(el) {
+            if (!el) return;
+            el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(6px)';
+            setTimeout(() => { if (el && el.parentNode) el.remove(); }, 200);
+        }
+
         // create a simple list of item titles for this category
         const list = document.createElement('div'); list.className = 'category-list';
-        menuData[index].items.forEach(item => {
-            const li = document.createElement('div'); li.className = 'list-item';
+
+        function makeListItem(catIdx, itemIdx) {
+            const item = menuData[catIdx].items[itemIdx];
+            const li = document.createElement('div');
+            li.className = 'list-item';
+            li.dataset.catIndex = String(catIdx);
+            li.dataset.itemIndex = String(itemIdx);
             const t = document.createElement('div'); t.className = 'title'; t.textContent = item.title;
             const c = document.createElement('div'); c.className = 'chev'; c.textContent = '›';
             li.appendChild(t); li.appendChild(c);
 
-            // toggle full card view under the title when clicked
             li.addEventListener('click', () => {
-                const next = li.nextElementSibling;
-                if (next && next.classList && next.classList.contains('card')) {
-                    // already expanded -> collapse
-                    next.remove();
-                    return;
+                // if this li is already replaced by a card, ignore
+                // collapse any existing expanded card first
+                const openCard = list.querySelector('.expanded-card');
+                if (openCard) {
+                    // if openCard corresponds to this item, just collapse it
+                    if (openCard.dataset.catIndex === String(catIdx) && openCard.dataset.itemIndex === String(itemIdx)) {
+                        animateRemove(openCard);
+                        // replace with a fresh list item
+                        const newLi = makeListItem(catIdx, itemIdx);
+                        openCard.replaceWith(newLi);
+                        return;
+                    }
+                    // replace other open card with its list item
+                    const oldCat = Number(openCard.dataset.catIndex);
+                    const oldItem = Number(openCard.dataset.itemIndex);
+                    const newLiOld = makeListItem(oldCat, oldItem);
+                    openCard.replaceWith(newLiOld);
                 }
-                // insert full card after the title
+
+                // replace THIS list-item with full card (no duplicate)
                 const card = createCard(item);
+                card.classList.add('expanded-card');
+                card.dataset.catIndex = String(catIdx);
+                card.dataset.itemIndex = String(itemIdx);
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(6px)';
-                li.after(card);
+                li.replaceWith(card);
+                // immediately expand details so sizes & prices are visible
+                card.classList.add('active');
                 // animate card in
                 requestAnimationFrame(() => {
                     card.style.transition = 'transform 220ms ease, opacity 220ms ease';
@@ -323,6 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            return li;
+        }
+
+        menuData[index].items.forEach((item, iItem) => {
+            const li = makeListItem(index, iItem);
             list.appendChild(li);
         });
 
