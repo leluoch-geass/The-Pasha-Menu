@@ -98,7 +98,7 @@ const menuData = [
             ]
     },
     {
-        category: 'Slice Cheese Cakes',
+        category: 'Cheese Cakes',
         items: [
             { title: 'San Sebastian', img: 'logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
             { title: 'Mango', img: 'mango.png', sizes: [['1 Slice','20 QAR','1 person']] },
