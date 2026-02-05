@@ -11,7 +11,7 @@ Category object fields
 
 Item object fields
 - `title` (string): item name shown on the card.
-- `img` (string): relative path to the image (e.g., 'img/kunafe.jpg' or 'kunafe.jpg'). Place image files in the `img/` folder or update the path accordingly.
+- `img` (string): relative path to the image (e.g., 'img/kunafe.png' or 'kunafe.png'). Place image files in the `img/` folder or update the path accordingly.
 - `sizes` (array): array of rows. Each row is an array: [ sizeLabel, price, persons ]
     Example: ['Small', '18 QAR', '1 person']
 
@@ -21,7 +21,7 @@ Add an item to an existing category
 
      {
          title: 'New Kunafe',
-         img: 'new-kunafe.jpg',
+         img: 'new-kunafe.png',
          sizes: [
              ['Small', '10 QAR', '1 person'],
              ['Medium', '20 QAR', '2 persons']
@@ -51,157 +51,169 @@ const menuData = [
     {
         category: 'Kunafe',
         items: [
-            { title: 'Cheese Kunafe', img: 'img/kunafe/Ckunafe.png', sizes: [['Small','18 QAR','1 person'],['Medium','35 QAR','2 persons'],['Large','60 QAR','4 persons']] },
-            { title: 'Nutella Kunafe', img: 'img/kunafe/Nkunafe.png', sizes: [['Small','20 QAR','1 person'],['Medium','40 QAR','2 persons'],['Large','65 QAR','4 persons']] },
-            { title: 'Qhasta Kunafe', img: 'img/kunafe/Qkunafe.png', sizes: [['Small','15 QAR','1 person'],['Medium','25 QAR','2 persons'],['Large','50 QAR','4 persons']] },
-            { title: 'Pasha Kunafe', img: 'img/kunafe/Pakunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
-            { title: 'Pistacio Kunafe', img: 'img/kunafe/Pkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','50 QAR','2 persons'],['Large','100 QAR','4 persons']] },
-            { title: 'Pistacio Cheese Kunafe', img: 'img/kunafe/PCkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','120 QAR','4 persons']] },
-            { title: 'Billuriye Kunafe', img: 'img/kunafe/Bkunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
+            { title: 'Cheese Kunafe', img: 'Ckunafe.png', sizes: [['Small','18 QAR','1 person'],['Medium','35 QAR','2 persons'],['Large','60 QAR','4 persons']] },
+            { title: 'Nutella Kunafe', img: 'Nkunafe.png', sizes: [['Small','20 QAR','1 person'],['Medium','40 QAR','2 persons'],['Large','65 QAR','4 persons']] },
+            { title: 'Qhasta Kunafe', img: 'Qkunafe.png', sizes: [['Small','15 QAR','1 person'],['Medium','25 QAR','2 persons'],['Large','50 QAR','4 persons']] },
+            { title: 'Pasha Kunafe', img: 'Pakunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
+            { title: 'Pistacio Kunafe', img: 'Pkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','50 QAR','2 persons'],['Large','100 QAR','4 persons']] },
+            { title: 'Pistacio Cheese Kunafe', img: 'PCkunafe.png', sizes: [['Small','25 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','120 QAR','4 persons']] },
+            { title: 'Billuriye Kunafe', img: 'Bkunafe.png', sizes: [['Small','35 QAR','1 person'],['Medium','70 QAR','2 persons'],['Large','130 QAR','4 persons']] },
         ]
     },
     {
         category: 'Pistachio Baklawa',
         items: [
-            { title: 'Durum Baklawa', img: 'img/Baklawa/Dbak.png', sizes: [['500g','67.50 QAR','20 - 24 pieces'],['1kg','135 QAR','40 - 44 pieces']] },
-            { title: 'Sweet Mix Baklawa', img: 'img/Baklawa/Mbak.png', sizes: [['500g','70 QAR','12 - 14 pieces'],['1kg','145 QAR','20 - 28 pieces']] },
-            { title: 'Pistacio Baklawa', img: 'img/Baklawa/Pbak.png', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','15 - 18 pieces']] },
-            { title: 'Walnut Padish Baklawa', img: 'img/Baklawa/NBak.png', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','20 - 23 pieces']] },
-            { title: 'Mussel Baklawa', img: 'img/Baklawa/Mbak.png', sizes: [['500g','75 QAR','12 - 15 pieces'],['1kg','150 QAR','20 - 23 pieces']] },
-            { title: 'Sobiyet Baklawa', img: 'img/Baklawa/Sbak.png', sizes: [['500g','70 QAR','8 - 10 pieces'],['1kg','140 QAR','16 - 19 pieces']] },
-            { title: 'Roll', img: 'img/Baklawa/Rbak.png', sizes: [['500g','80 QAR','10 - 13 pieces'],['1kg','160 QAR','16 - 20 pieces']] },
-            { title: 'Cold Baklawa', img: 'img/Baklawa/Coldbak.png', sizes: [['500g','65 QAR','9 - 12 pieces'],['1kg','130 QAR','20 - 22 pieces']] },
-            { title: 'Carrot Slice Baklawa', img: 'img/Baklawa/Cbak.png', sizes: [['120g','15 QAR','1 piece'],['1kg','125 QAR','7 - 8 pieces']] },
+            { title: 'Durum Baklawa', img: 'Dbak.png', sizes: [['500g','67.50 QAR','20 - 24 pieces'],['1kg','135 QAR','40 - 44 pieces']] },
+            { title: 'Sweet Mix Baklawa', img: 'Mbak.png', sizes: [['500g','70 QAR','12 - 14 pieces'],['1kg','145 QAR','20 - 28 pieces']] },
+            { title: 'Pistacio Baklawa', img: 'Pbak.png', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','15 - 18 pieces']] },
+            { title: 'Walnut Padish Baklawa', img: 'NBak.png', sizes: [['500g','67.50 QAR','10 - 12 pieces'],['1kg','135 QAR','20 - 23 pieces']] },
+            { title: 'Mussel Baklawa', img: 'Mbak.png', sizes: [['500g','75 QAR','12 - 15 pieces'],['1kg','150 QAR','20 - 23 pieces']] },
+            { title: 'Sobiyet Baklawa', img: 'Sbak.png', sizes: [['500g','70 QAR','8 - 10 pieces'],['1kg','140 QAR','16 - 19 pieces']] },
+            { title: 'Roll', img: 'Rbak.png', sizes: [['500g','80 QAR','10 - 13 pieces'],['1kg','160 QAR','16 - 20 pieces']] },
+            { title: 'Cold Baklawa', img: 'Coldbak.png', sizes: [['500g','65 QAR','9 - 12 pieces'],['1kg','130 QAR','20 - 22 pieces']] },
+            { title: 'Carrot Slice Baklawa', img: 'Cbak.png', sizes: [['120g','15 QAR','1 piece'],['1kg','125 QAR','7 - 8 pieces']] },
         ]
     },
         {
         category: 'Cakes',
         items: [
-            { title: 'Caramel', img: 'img/Cake/CCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
-            { title: 'Lotus', img: 'img/logoTrans.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
-            { title: 'White Chocolate', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Dark Chocolate', img: 'img/Cake/DCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
-            { title: 'Chocolate with Nut Sauce', img: 'img/Cake/Ncake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
-            { title: 'Strawberry Princess', img: 'Cake.jpg', sizes: [['Mini','25 QAR','1 person'],['Small','65 QAR','4 persons'],['Medium','85 QAR','6 persons']] },
-            { title: 'Crunchy Pistachio', img: 'Cake.jpg', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons']] },
-            { title: 'Lady Bug', img: 'img/Cake/LBcake.png', sizes: [['Mini','20 QAR','1 person']] },
+            { title: 'Caramel', img: 'CCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
+            { title: 'Lotus', img: 'logoTrans.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
+            { title: 'White Chocolate', img: 'WCCake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Dark Chocolate', img: 'DCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
+            { title: 'Chocolate with Nut Sauce', img: 'Ncake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
+            { title: 'Strawberry Princess', img: 'SPcake.png', sizes: [['Mini','25 QAR','1 person'],['Small','65 QAR','4 persons'],['Medium','85 QAR','6 persons']] },
+            { title: 'Crunchy Pistachio', img: 'Pcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons']] },
+            { title: 'Lady Bug', img: 'LBcake.png', sizes: [['Mini','20 QAR','1 person']] },
         ]
     },
     {
         category: 'Slice Cakes',
             items: [
-            { title: 'Mosaic Cake', img: 'img/logoTrans.png', sizes: [['1 Slice','15 QAR','1 person']] },
-            { title: 'Tiramisu Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
-            { title: 'Carrot Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','17 QAR','1 person']] },
-            { title: 'Honey Cake', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
-            { title: 'Chocolate Brownie', img: 'slice-cake.jpg', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Mosaic Cake', img: 'logoTrans.png', sizes: [['1 Slice','15 QAR','1 person']] },
+            { title: 'Tiramisu Cake', img: 'tiramisu.png', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Carrot Cake', img: 'Ccake.png', sizes: [['1 Slice','17 QAR','1 person']] },
+            { title: 'Honey Cake', img: 'Hcake.png', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Chocolate Brownie', img: 'CBcake.png', sizes: [['1 Slice','18 QAR','1 person']] },
             ]
     },
     {
         category: 'Slice Cheese Cakes',
         items: [
-            { title: 'San Sebastian', img: 'img/logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Mango', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Blueberry', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Lemon', img: 'slice-cheese-cake.jpg', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'San Sebastian', img: 'logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Mango', img: 'mango.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Blueberry', img: 'blueberry.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Lemon', img: 'lemon.png', sizes: [['1 Slice','20 QAR','1 person']] },
         ]
     },
     {
         category: 'Milk Deserts',
         items: [
-            { title: 'Trilece', img: 'img/logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Sutlac', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
-            { title: 'Strawberry Magnolia', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
-            { title: 'Lotus Dream', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
-            { title: 'Kazandibi', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
-            { title: 'Profiteroles', img: 'milk-desert.jpg', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Trilece', img: 'logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Sutlac', img: 'sutlac.png', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Strawberry Magnolia', img: 'magnolia.png', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Lotus Dream', img: 'lotus-dream.png', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Kazandibi', img: 'kazandibi.png', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Profiteroles', img: 'profiteroles.png', sizes: [['1 Piece','20 QAR','1 person']] },
         ]
     },
     {  
         category: 'Cookies',
         items: [
-            { title: 'Mix Sweet Cookies', img: 'img/logoTrans.png', sizes: [['250g','21.25 QAR','10 - 14 pieces'],['500g','42.50 QAR','20 - 24 pieces'],['1kg','85 QAR','40 - 48 pieces']] },
-            { title: 'Mix Salty Cookies', img: 'cookies.jpg', sizes: [['250g','17.50 QAR','10 - 14 pieces'],['500g','35 QAR','20 - 24 pieces'],['1kg','70 QAR','40 - 48 pieces']] },
-            { title: 'Mix Special Sweet Cookies', img: 'cookies.jpg', sizes: [['250g','25 QAR','10 - 14 pieces'],['500g','50 QAR','20 - 24 pieces'],['1kg','100 QAR','40 - 48 pieces']] },
-            { title: 'Macaron', img: 'cookies.jpg', sizes: [['1 Box','25 QAR','6 pieces']] },
+            { title: 'Mix Sweet Cookies', img: 'SWcookies.png', sizes: [['250g','21.25 QAR','10 - 14 pieces'],['500g','42.50 QAR','20 - 24 pieces'],['1kg','85 QAR','40 - 48 pieces']] },
+            { title: 'Mix Salty Cookies', img: 'SAcookies.png', sizes: [['250g','17.50 QAR','10 - 14 pieces'],['500g','35 QAR','20 - 24 pieces'],['1kg','70 QAR','40 - 48 pieces']] },
+            { title: 'Mix Special Sweet Cookies', img: 'SScookies.png', sizes: [['250g','25 QAR','10 - 14 pieces'],['500g','50 QAR','20 - 24 pieces'],['1kg','100 QAR','40 - 48 pieces']] },
+            { title: 'Macaron', img: 'macaron.png', sizes: [['1 Box','25 QAR','6 pieces']] },
         ]
     },
     {
         category: 'Turkish Delight',
         items: [
-            { title: 'Mix Turkish Delight', img: 'img/logoTrans.png', sizes: [['250g','25 QAR','-'],['500g','50 QAR','-'],['1kg','100 QAR','-']] },
+            { title: 'Mix Turkish Delight', img: 'delight.png', sizes: [['250g','25 QAR','-'],['500g','50 QAR','-'],['1kg','100 QAR','-']] },
         ]
     },
     {
         category: 'Breads',
         items: [
-            { title: 'Turkish Simit', img: 'img/logoTrans.png', sizes: [['1 Piece','5 QAR','1 person']] },
-            { title: 'Kashkaval Cheese Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 persons']] },
-            { title: 'Feta Cheese Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Plain Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Olive Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Potato Pocaga', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Bagel with Potatoes', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Bagel with Olive', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Plain Bagel', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Bagel with Kashkaval Cheese', img: 'bread.jpg', sizes: [['1 Piece','7 QAR','1 person']] },
-            { title: 'Borek', img: 'bread.jpg', sizes: [['1 Slice','13 QAR','1 person']] },
-
+            { title: 'Turkish Simit', img: 'simit.png', sizes: [['1 Piece','5 QAR','1 person']] },
+            { title: 'Kashkaval Cheese Pocaga', img: 'kashkaval.png', sizes: [['1 Piece','7 QAR','1 persons']] },
+            { title: 'Feta Cheese Pocaga', img: 'feta.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Plain Pocaga', img: 'plain-pocaga.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Olive Pocaga', img: 'olive-pocaga.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Potato Pocaga', img: 'potato-pocaga.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Potatoes', img: 'bagel-potatoes.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Olive', img: 'bagel-olive.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Plain Bagel', img: 'plain-bagel.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Bagel with Kashkaval Cheese', img: 'bagel-kashkaval.png', sizes: [['1 Piece','7 QAR','1 person']] },
+            { title: 'Borek', img: 'borek.png', sizes: [['1 Slice','13 QAR','1 person']] },
         ]
     },
     {
         category: 'Cold Drinks',
         items: [
-            { title: 'Iced Lattee', img: 'img/logoTrans.png', sizes: [['1 Cap','15 QAR','1 person']] },
-            { title: 'Iced Spanish Lattee', img: 'cold-drink.jpg', sizes: [['1 Cap','17 QAR','1 person']] },
-            { title: 'Iced Americano', img: 'cold-drink.jpg', sizes: [['1 Cap','14 QAR','1 person']] },
-            { title: 'Hand Made Lemonade', img: 'cold-drink.jpg', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
-            { title: 'Coca Cola', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Fanta', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Sprite', img: 'cold-drink.jpg', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Rayyan Natural Water', img: 'cold-drink.jpg', sizes: [['1 Bottle','3 QAR','1 person']] },
-            { title: 'Beypazari', img: 'cold-drink.jpg', sizes: [['1 Bottle','5 QAR','1 person']] },
+            { title: 'Iced Lattee', img: 'iced-latte.png', sizes: [['1 Cap','15 QAR','1 person']] },
+            { title: 'Iced Spanish Lattee', img: 'iced-spanish-latte.png', sizes: [['1 Cap','17 QAR','1 person']] },
+            { title: 'Iced Americano', img: 'iced-americano.png', sizes: [['1 Cap','14 QAR','1 person']] },
+            { title: 'Hand Made Lemonade', img: 'hand-made-lemonade.png', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
+            { title: 'Coca Cola', img: 'coca-cola.png', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Fanta', img: 'fanta.png', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Sprite', img: 'sprite.png', sizes: [['1 Can','5 QAR','1 person']] },
+            { title: 'Rayyan Natural Water', img: 'rayyan-natural-water.png', sizes: [['1 Bottle','3 QAR','1 person']] },
+            { title: 'Beypazari', img: 'beypazari.png', sizes: [['1 Bottle','5 QAR','1 person']] },
 
         ]
     },
     {
         category: 'Hot Drinks',
         items: [
-            { title: 'Turkish Tea', img: 'img/logoTrans.png', sizes: [['1 Cup','3 QAR','1 person']] },
-            { title: 'Double Turkish Tea', img: 'hot-drink.jpg', sizes: [['1 Cup','5 QAR','1 person']] },
-            { title: 'Turkish Coffee', img: 'hot-drink.jpg', sizes: [['1 Cup','10 QAR','1 person']] },
-            { title: 'Double Turkish Coffee', img: 'hot-drink.jpg', sizes: [['1 Cup','20 QAR','1 person']] },
-            { title: 'Espresso', img: 'hot-drink.jpg', sizes: [['1 Cup','10 QAR','1 person']] },
-            { title: 'Double Espresso', img: 'hot-drink.jpg', sizes: [['1 Cup','12 QAR','1 person']] },
-            { title: 'Americano', img: 'hot-drink.jpg', sizes: [['1 Cup','12 QAR','1 person']] },
-            { title: 'Cappuccino', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
-            { title: 'Lattee', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
-            { title: 'Spanish Lattee', img: 'hot-drink.jpg', sizes: [['1 Cup','17 QAR','1 person']] },
-            { title: 'Cortado', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
-            { title: 'Flat White', img: 'hot-drink.jpg', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Turkish Tea', img: 'turkish-tea.png', sizes: [['1 Cup','3 QAR','1 person']] },
+            { title: 'Double Turkish Tea', img: 'dturkish-tea.png', sizes: [['1 Cup','5 QAR','1 person']] },
+            { title: 'Turkish Coffee', img: 'turkish-coffee.png', sizes: [['1 Cup','10 QAR','1 person']] },
+            { title: 'Double Turkish Coffee', img: 'dturkish-coffee.png', sizes: [['1 Cup','20 QAR','1 person']] },
+            { title: 'Espresso', img: 'espresso.png', sizes: [['1 Cup','10 QAR','1 person']] },
+            { title: 'Double Espresso', img: 'despresso.png', sizes: [['1 Cup','12 QAR','1 person']] },
+            { title: 'Americano', img: 'americano.png', sizes: [['1 Cup','12 QAR','1 person']] },
+            { title: 'Cappuccino', img: 'cappuccino.png', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Lattee', img: 'lattee.png', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Spanish Lattee', img: 'spanish.png', sizes: [['1 Cup','17 QAR','1 person']] },
+            { title: 'Cortado', img: 'cortado.png', sizes: [['1 Cup','15 QAR','1 person']] },
+            { title: 'Flat White', img: 'white.png', sizes: [['1 Cup','15 QAR','1 person']] },
         ]   
     },
     {
         category: 'Ice Cream',
         items: [
-            { title: 'Vanilla Ice Cream', img: 'img/logoTrans.png', sizes: [['1 Scoop','5 QAR','1 person']] },
-            { title: 'Chocolate Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
-            { title: 'Strawberry Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
-            { title: 'Mango Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
-            { title: 'Pistachio Ice Cream', img: 'ice-cream.jpg', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Vanilla Ice Cream', img: 'vanilla.png', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Chocolate Ice Cream', img: 'chocolate.png', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Strawberry Ice Cream', img: 'strawberry.png', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Mango Ice Cream', img: 'mango.png', sizes: [['1 Scoop','5 QAR','1 person']] },
+            { title: 'Pistachio Ice Cream', img: 'pistachio.png', sizes: [['1 Scoop','5 QAR','1 person']] },
         ]
     }
 ];
 
-function createCard(item) {
+
+
+function createCard(item, folder) {
+
     const card = document.createElement('div');
     card.className = 'card';
 
     const img = document.createElement('img');
-    img.src = item.img || 'img/logoTrans.png';
+
+    img.src = item.img
+        ? `img/${folder}/${item.img}`
+        : 'img/logoTrans.png';
+
     img.alt = item.title;
-    img.onerror = () => { img.onerror = null; img.src = 'img/logoTrans.png'; };
+
+    img.onerror = () => {
+        img.onerror = null;
+        img.src = 'img/logoTrans.png';
+    };
+
     card.appendChild(img);
+
 
     const content = document.createElement('div');
     content.className = 'content';
@@ -368,7 +380,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // replace THIS list-item with full card (no duplicate)
-                const card = createCard(item);
+                const folder = menuData[catIdx].category
+                .toLowerCase()
+                .replace(/\s+/g, '-');
+                const card = createCard(item, folder);
                 card.classList.add('expanded-card');
                 card.dataset.catIndex = String(catIdx);
                 card.dataset.itemIndex = String(itemIdx);
