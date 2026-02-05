@@ -94,7 +94,7 @@ const menuData = [
             { title: 'Tiramisu Cake', img: 'tiramisu.png', sizes: [['1 Slice','18 QAR','1 person']] },
             { title: 'Carrot Cake', img: 'Ccake.png', sizes: [['1 Slice','17 QAR','1 person']] },
             { title: 'Honey Cake', img: 'Hcake.png', sizes: [['1 Slice','18 QAR','1 person']] },
-            { title: 'Chocolate Brownie', img: 'CBcake.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Chocolate Brownie', img: 'Brownies.png', sizes: [['1 Slice','20 QAR','1 person']] },
             ]
     },
     {
@@ -149,11 +149,16 @@ const menuData = [
         ]
     },
     {
-        category: 'Cold Drinks',
+        category: 'Ice Coffee',
         items: [
             { title: 'Iced Lattee', img: 'iced-latte.png', sizes: [['1 Cap','15 QAR','1 person']] },
             { title: 'Iced Spanish Lattee', img: 'iced-spanish-latte.png', sizes: [['1 Cap','17 QAR','1 person']] },
             { title: 'Iced Americano', img: 'iced-americano.png', sizes: [['1 Cap','14 QAR','1 person']] },
+        ]
+    },
+    {
+        category: 'Cold Drinks',
+        items: [
             { title: 'Hand Made Lemonade', img: 'lemonade.png', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
             { title: 'Coca Cola', img: 'coca-cola.png', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Fanta', img: 'fanta.png', sizes: [['1 Can','5 QAR','1 person']] },
@@ -164,10 +169,20 @@ const menuData = [
         ]
     },
     {
-        category: 'Hot Drinks',
+        category: 'Tea',
         items: [
             { title: 'Turkish Tea', img: 'turkish-tea.png', sizes: [['1 Cup','3 QAR','1 person']] },
             { title: 'Double Turkish Tea', img: 'dturkish-tea.png', sizes: [['1 Cup','5 QAR','1 person']] },
+        ]
+    },
+    {
+        category: 'Keeta',
+        link: 'https://www.keeta.com'
+    },
+         
+    {
+        category: 'Hot Coffee',
+        items: [
             { title: 'Turkish Coffee', img: 'turkish-coffee.png', sizes: [['1 Cup','10 QAR','1 person']] },
             { title: 'Double Turkish Coffee', img: 'dturkish-coffee.png', sizes: [['1 Cup','20 QAR','1 person']] },
             { title: 'Espresso', img: 'espresso.png', sizes: [['1 Cup','10 QAR','1 person']] },
@@ -189,7 +204,12 @@ const menuData = [
             { title: 'Mango Ice Cream', img: 'mango.png', sizes: [['1 Scoop','5 QAR','1 person']] },
             { title: 'Pistachio Ice Cream', img: 'pistachio.png', sizes: [['1 Scoop','5 QAR','1 person']] },
         ]
-    }
+    },
+    {
+        category: 'Talabat',
+        link: 'https://www.talabat.com'
+    },
+    
 ];
 
 
@@ -290,7 +310,6 @@ function renderMenu(containerId = 'menu') {
         tile.appendChild(img);
         tile.appendChild(title);
         tile.dataset.index = idx;
-
         grid.appendChild(tile);
     });
 
@@ -471,10 +490,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // attach click and hover handlers to tiles now that openCategoryPanel is defined
     document.querySelectorAll('.category-tile').forEach(tile => {
         const idx = Number(tile.dataset.index);
-        tile.addEventListener('click', () => openCategoryPanel(idx, tile));
-        tile.addEventListener('mouseenter', () => {
-            if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
-        });
+        tile.addEventListener('click', () => {
+    const group = menuData[idx];
+
+    // If category has a link → open it
+    if (group.link) {
+        window.open(group.link, '_blank'); 
+        return;
+    }
+
+    // otherwise open menu panel
+    openCategoryPanel(idx, tile);
+});
+
+    tile.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+    });
         tile.addEventListener('mouseleave', () => { tile.style.transform = ''; });
     });
 });
