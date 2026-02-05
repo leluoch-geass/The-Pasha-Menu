@@ -90,26 +90,26 @@ const menuData = [
     {
         category: 'Slice Cakes',
             items: [
-            { title: 'Mosaic Cake', img: 'logoTrans.png', sizes: [['1 Slice','15 QAR','1 person']] },
+            { title: 'Mosaic Cake', img: 'mosaic.png', sizes: [['1 Slice','15 QAR','1 person']] },
             { title: 'Tiramisu Cake', img: 'tiramisu.png', sizes: [['1 Slice','18 QAR','1 person']] },
             { title: 'Carrot Cake', img: 'Ccake.png', sizes: [['1 Slice','17 QAR','1 person']] },
             { title: 'Honey Cake', img: 'Hcake.png', sizes: [['1 Slice','18 QAR','1 person']] },
-            { title: 'Chocolate Brownie', img: 'CBcake.png', sizes: [['1 Slice','18 QAR','1 person']] },
+            { title: 'Chocolate Brownie', img: 'CBcake.png', sizes: [['1 Slice','20 QAR','1 person']] },
             ]
     },
     {
         category: 'Cheese Cakes',
         items: [
-            { title: 'San Sebastian', img: 'logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Mango', img: 'mango.png', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Blueberry', img: 'blueberry.png', sizes: [['1 Slice','20 QAR','1 person']] },
-            { title: 'Lemon', img: 'lemon.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'San Sebastian', img: 'san.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Mango', img: 'mango.png', sizes: [['1 Slice','15 QAR','1 person']] },
+            { title: 'Blueberry', img: 'blueberry.png', sizes: [['1 Slice','15 QAR','1 person']] },
+            { title: 'Lemon', img: 'lemon.png', sizes: [['1 Slice','15 QAR','1 person']] },
         ]
     },
     {
-        category: 'Milk Deserts',
+        category: 'Milk Desserts',
         items: [
-            { title: 'Trilece', img: 'logoTrans.png', sizes: [['1 Slice','20 QAR','1 person']] },
+            { title: 'Trilece', img: 'trilece.png', sizes: [['1 Slice','20 QAR','1 person']] },
             { title: 'Sutlac', img: 'sutlac.png', sizes: [['1 Piece','20 QAR','1 person']] },
             { title: 'Strawberry Magnolia', img: 'magnolia.png', sizes: [['1 Piece','20 QAR','1 person']] },
             { title: 'Lotus Dream', img: 'lotus-dream.png', sizes: [['1 Piece','20 QAR','1 person']] },
@@ -154,11 +154,11 @@ const menuData = [
             { title: 'Iced Lattee', img: 'iced-latte.png', sizes: [['1 Cap','15 QAR','1 person']] },
             { title: 'Iced Spanish Lattee', img: 'iced-spanish-latte.png', sizes: [['1 Cap','17 QAR','1 person']] },
             { title: 'Iced Americano', img: 'iced-americano.png', sizes: [['1 Cap','14 QAR','1 person']] },
-            { title: 'Hand Made Lemonade', img: 'hand-made-lemonade.png', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
+            { title: 'Hand Made Lemonade', img: 'lemonade.png', sizes: [['Small','5 QAR','1 person'],['Large','10 QAR','1 person']] },
             { title: 'Coca Cola', img: 'coca-cola.png', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Fanta', img: 'fanta.png', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Sprite', img: 'sprite.png', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Rayyan Natural Water', img: 'rayyan-natural-water.png', sizes: [['1 Bottle','3 QAR','1 person']] },
+            { title: 'Rayyan Natural Water', img: 'water.png', sizes: [['1 Bottle','3 QAR','1 person']] },
             { title: 'Beypazari', img: 'beypazari.png', sizes: [['1 Bottle','5 QAR','1 person']] },
 
         ]
