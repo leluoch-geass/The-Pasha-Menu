@@ -178,7 +178,7 @@ const menuData = [
     {
         category: 'Keeta',
         img: 'keeta/keeta.png',
-        link: 'https://www.keeta.com'
+        link: 'https://url-eu.mykeeta.com/jVyiVEjz'
     },
          
     {
