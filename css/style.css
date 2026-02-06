@@ -2,6 +2,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
+}
 body::before {
     content: "";
     position: fixed;
@@ -13,6 +14,7 @@ body::before {
     opacity: 0.20;
     z-index: -1;
 }
+
 
 /* ================= MAIN CONTAINER ================= */
 .container {
