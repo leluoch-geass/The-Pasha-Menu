@@ -177,6 +177,7 @@ const menuData = [
     },
     {
         category: 'Keeta',
+        img: 'keeta/keeta.png',
         link: 'https://www.keeta.com'
     },
          
@@ -207,6 +208,7 @@ const menuData = [
     },
     {
         category: 'Talabat',
+        img: 'talabat/talabat.png',
         link: 'https://www.talabat.com'
     },
     
@@ -288,17 +290,22 @@ function renderMenu(containerId = 'menu') {
         img.className = 'tile-img';
         // determine tile image from category folder
         let tileSrc = 'img/logoTrans.png';
-        if (group.items && group.items[0] && group.items[0].img) {
-            const firstImg = group.items[0].img;
-            if (firstImg.includes('/')) {
-                // already a path (e.g. img/kunafe/file.png)
-                tileSrc = firstImg;
-            } else {
-                // build path using slugified category name
-                const slug = group.category.toLowerCase().replace(/\s+/g, '-');
-                tileSrc = `img/${slug}/${firstImg}`;
-            }
+
+        // ⭐ If category has custom icon → use it FIRST
+        if (group.img) {
+        tileSrc = group.img.startsWith('img/')
+        ? group.img
+        : `img/${group.img}`;
+}
+
+
+        // Otherwise use first product image
+        else if (group.items?.length && group.items[0].img) {
+        const slug = group.category.toLowerCase().replace(/\s+/g, '-');
+        tileSrc = `img/${slug}/${group.items[0].img}`;
         }
+
+
         img.src = tileSrc;
         img.alt = group.category;
         img.onerror = () => { img.onerror = null; img.src = 'img/logoTrans.png'; };
@@ -495,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If category has a link → open it
     if (group.link) {
-        window.open(group.link, '_blank'); 
+        window.location.href = group.link; 
         return;
     }
 
