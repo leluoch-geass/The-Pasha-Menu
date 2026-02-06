@@ -112,7 +112,7 @@ const menuData = [
             { title: 'Trilece', img: 'trilece.png', sizes: [['1 Slice','20 QAR','1 person']] },
             { title: 'Sutlac', img: 'sutlac.png', sizes: [['1 Piece','20 QAR','1 person']] },
             { title: 'Strawberry Magnolia', img: 'magnolia.png', sizes: [['1 Piece','20 QAR','1 person']] },
-            { title: 'Lotus Dream', img: 'lotus-dream.png', sizes: [['1 Piece','20 QAR','1 person']] },
+            { title: 'Lotus Dream', img: 'dream.png', sizes: [['1 Piece','20 QAR','1 person']] },
             { title: 'Kazandibi', img: 'kazandibi.png', sizes: [['1 Piece','20 QAR','1 person']] },
             { title: 'Profiteroles', img: 'profiteroles.png', sizes: [['1 Piece','20 QAR','1 person']] },
         ]
@@ -163,7 +163,7 @@ const menuData = [
             { title: 'Coca Cola', img: 'coca-cola.png', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Fanta', img: 'fanta.png', sizes: [['1 Can','5 QAR','1 person']] },
             { title: 'Sprite', img: 'sprite.png', sizes: [['1 Can','5 QAR','1 person']] },
-            { title: 'Rayyan Natural Water', img: 'water.png', sizes: [['1 Bottle','3 QAR','1 person']] },
+            { title: 'Rayyan Natural Water', img: 'rayyan.png', sizes: [['1 Bottle','3 QAR','1 person']] },
             { title: 'Beypazari', img: 'beypazari.png', sizes: [['1 Bottle','5 QAR','1 person']] },
 
         ]
@@ -188,7 +188,7 @@ const menuData = [
             { title: 'Double Turkish Coffee', img: 'dturkish-coffee.png', sizes: [['1 Cup','20 QAR','1 person']] },
             { title: 'Espresso', img: 'espresso.png', sizes: [['1 Cup','10 QAR','1 person']] },
             { title: 'Double Espresso', img: 'despresso.png', sizes: [['1 Cup','20 QAR','1 person']] },
-            {   title: 'Long Espresso', img: 'long.png', sizes: [['1 Cup','12 QAR','1 person']] },
+            { title: 'Long Espresso', img: 'long.png', sizes: [['1 Cup','12 QAR','1 person']] },
             { title: 'Americano', img: 'americano.png', sizes: [['1 Cup','12 QAR','1 person']] },
             { title: 'Cappuccino', img: 'cappuccino.png', sizes: [['1 Cup','13 QAR','1 person']] },
             { title: 'Lattee', img: 'lattee.png', sizes: [['1 Cup','13 QAR','1 person']] },
