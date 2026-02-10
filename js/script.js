@@ -78,7 +78,7 @@ const menuData = [
         category: 'Cakes',
         items: [
             { title: 'Caramel', img: 'CCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
-            { title: 'Lotus', img: 'logoTrans.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
+            { title: 'Lotus', img: 'Lcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],] },
             { title: 'White Chocolate', img: 'WCCake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
             { title: 'Dark Chocolate', img: 'DCcake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons']] },
             { title: 'Chocolate with Nut Sauce', img: 'Ncake.png', sizes: [['Mini','20 QAR','1 person'],['Small','60 QAR','4 persons'],['Medium','80 QAR','6 persons'],['Large','100 QAR','8 - 10 persons'],['Family','120 QAR','10 - 14 persons']] },
