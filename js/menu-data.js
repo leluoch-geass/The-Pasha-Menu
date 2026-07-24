@@ -3,8 +3,8 @@ const BRANCHES = {
     AH: 'Abu Hamour'
 };
 
-// Change this value to 'AH' for Abu Hamour or 'AW' for Al Wakuir.
-const BRANCH_CODE = 'AW';
+// Branch code is selected on page load from query param or saved branch.
+let BRANCH_CODE = 'AW';
 
 const menuData = [
     {
@@ -41,9 +41,9 @@ const menuData = [
                 title: 'Pasha Kunafe',
                 img: 'Pakunafe.png',
                 sizes: [
-                    { label: 'Small', price: '35 QAR', persons: '1 person', branches: ['AW', 'AH'] },
-                    { label: 'Medium', price: '70 QAR', persons: '2 persons', branches: ['AW', 'AH'] },
-                    { label: 'Large', price: '130 QAR', persons: '4 persons', branches: ['AW', 'AH'] }
+                    { label: 'Small', price: '35 QAR', persons: '1 person', branches: ['AW'] },
+                    { label: 'Medium', price: '70 QAR', persons: '2 persons', branches: ['AW'] },
+                    { label: 'Large', price: '130 QAR', persons: '4 persons', branches: ['AW'] }
                 ]
             },
             {
@@ -68,9 +68,9 @@ const menuData = [
                 title: 'Billuriye Kunafe',
                 img: 'Bkunafe.png',
                 sizes: [
-                    { label: 'Small', price: '35 QAR', persons: '1 person', branches: ['AW', 'AH'] },
-                    { label: 'Medium', price: '70 QAR', persons: '2 persons', branches: ['AW', 'AH'] },
-                    { label: 'Large', price: '130 QAR', persons: '4 persons', branches: ['AW', 'AH'] }
+                    { label: 'Small', price: '35 QAR', persons: '1 person', branches: ['AW'] },
+                    { label: 'Medium', price: '70 QAR', persons: '2 persons', branches: ['AW'] },
+                    { label: 'Large', price: '130 QAR', persons: '4 persons', branches: ['AW'] }
                 ]
             }
         ]
@@ -242,16 +242,18 @@ const menuData = [
             { title: 'Tiramisu Cake', img: 'tiramisu.png', sizes: [ { label: '1 Slice', price: '18 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Carrot Cake', img: 'Ccake.png', sizes: [ { label: '1 Slice', price: '17 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Honey Cake', img: 'Hcake.png', sizes: [ { label: '1 Slice', price: '18 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Chocolate Brownie', img: 'Brownies.png', sizes: [ { label: '1 Slice', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
+        //  { title: 'Chocolate Brownie', img: 'Brownies.png', sizes: [ { label: '1 Slice', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
         ]
     },
     {
         category: 'Cheese Cakes',
         items: [
             { title: 'San Sebastian', img: 'san.png', sizes: [ { label: '1 Slice', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Mango', img: 'mango.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //  { title: 'Mango', img: 'mango.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+            { title: 'Mousse', img: 'mousse.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Blueberry', img: 'blueberry.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Lemon', img: 'lemon.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
+            { title: 'Lemon', img: 'lemon.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+            { title: 'Raspberry', img: 'raspberry.png', sizes: [ { label: '1 Slice', price: '15 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
         ]
     },
     {
@@ -259,8 +261,8 @@ const menuData = [
         items: [
             { title: 'Trilece', img: 'trilece.png', sizes: [ { label: '1 Slice', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Sutlac', img: 'sutlac.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Strawberry Magnolia', img: 'magnolia.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Lotus Dream', img: 'lotus-dream.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //  { title: 'Strawberry Magnolia', img: 'magnolia.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //  { title: 'Lotus Dream', img: 'lotus-dream.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Kazandibi', img: 'kazandibi.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Profiteroles', img: 'profiteroles.png', sizes: [ { label: '1 Piece', price: '20 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
         ]
@@ -274,26 +276,26 @@ const menuData = [
             { title: 'Macaron', img: 'macaron.png', sizes: [ { label: '1 Box', price: '25 QAR', persons: '6 pieces', branches: ['AW', 'AH'] } ] }
         ]
     },
-    {
+    /*{
         category: 'Turkish Delight',
         items: [
             { title: 'Mix Turkish Delight', img: 'delight.png', sizes: [ { label: '250g', price: '25 QAR', persons: '-', branches: ['AW', 'AH'] }, { label: '500g', price: '50 QAR', persons: '-', branches: ['AW', 'AH'] }, { label: '1kg', price: '100 QAR', persons: '-', branches: ['AW', 'AH'] } ] }
         ]
-    },
+    },*/
     {
         category: 'Breads',
         items: [
             { title: 'Turkish Simit', img: 'simit.png', sizes: [ { label: '1 Piece', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Kashkaval Cheese Pocaga', img: 'kashkaval.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 persons', branches: ['AW', 'AH'] } ] },
-            { title: 'Feta Cheese Pocaga', img: 'feta.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Plain Pocaga', img: 'plain-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Olive Pocaga', img: 'olive-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Potato Pocaga', img: 'potato-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Bagel with Potatoes', img: 'bagel-potatoes.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Bagel with Olive', img: 'bagel-olive.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Plain Bagel', img: 'plain-bagel.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Bagel with Kashkaval Cheese', img: 'bagel-kashkaval.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Borek', img: 'borek.png', sizes: [ { label: '1 Slice', price: '13 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
+        //    { title: 'Kashkaval Cheese Pocaga', img: 'kashkaval.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 persons', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Feta Cheese Pocaga', img: 'feta.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Plain Pocaga', img: 'plain-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Olive Pocaga', img: 'olive-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Potato Pocaga', img: 'potato-pocaga.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Bagel with Potatoes', img: 'bagel-potatoes.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Bagel with Olive', img: 'bagel-olive.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Plain Bagel', img: 'plain-bagel.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Bagel with Kashkaval Cheese', img: 'bagel-kashkaval.png', sizes: [ { label: '1 Piece', price: '7 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+        //    { title: 'Borek', img: 'borek.png', sizes: [ { label: '1 Slice', price: '13 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
         ]
     },
     {
@@ -313,6 +315,18 @@ const menuData = [
             { title: 'Sprite', img: 'sprite.png', sizes: [ { label: '1 Can', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Rayyan Natural Water', img: 'water.png', sizes: [ { label: '1 Bottle', price: '3 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Beypazari', img: 'beypazari.png', sizes: [ { label: '1 Bottle', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
+        ]
+    },
+    {
+        category: 'Mojito',
+        items: [
+            {title: 'Lemon Mojito', img: 'lemon-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blueberry Mojito', img: 'blueberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blackberry Mojito', img: 'blackberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Waterlemon Mojito', img: 'waterlemon-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blue Mojito', img: 'blue-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Curacao Mojito', img: 'Curacao-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Strawberry Mojito', img: 'strawberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] }
         ]
     },
     {
@@ -349,8 +363,9 @@ const menuData = [
             { title: 'Vanilla Ice Cream', img: 'vanilla.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Chocolate Ice Cream', img: 'chocolate.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
             { title: 'Strawberry Ice Cream', img: 'strawberry.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Mango Ice Cream', img: 'mango.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
-            { title: 'Pistachio Ice Cream', img: 'pistachio.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
+        //  { title: 'Mango Ice Cream', img: 'mango.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+            { title: 'Pistachio Ice Cream', img: 'pistachio.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] },
+            { title: 'Honey and Walnut Ice Cream', img: 'honey-walnut.png', sizes: [ { label: '1 Scoop', price: '5 QAR', persons: '1 person', branches: ['AW', 'AH'] } ] }
         ]
     },
     {

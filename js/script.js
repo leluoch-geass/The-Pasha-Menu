@@ -1,8 +1,69 @@
 /*
 Menu data is now stored in js/menu-data.js.
-Use BRANCH_CODE = 'AW' for Al Wakuir or 'AH' for Abu Hamour.
+Branch selection is loaded from query parameters or local storage.
 Only items and sizes available for the chosen branch are rendered.
 */
+
+function getBranchCodeFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('branch');
+    return code && BRANCHES[code] ? code : null;
+}
+
+function getBranchCodeFromStorage() {
+    const code = localStorage.getItem('pashaBranch');
+    return code && BRANCHES[code] ? code : null;
+}
+
+function saveBranchCode(code) {
+    if (!code || !BRANCHES[code]) return false;
+    BRANCH_CODE = code;
+    localStorage.setItem('pashaBranch', code);
+    const url = new URL(window.location.href);
+    url.searchParams.set('branch', code);
+    window.history.replaceState({}, '', url);
+    return true;
+}
+
+function setBranchHeading(code) {
+    const heading = document.getElementById('selected-branch');
+    if (!heading) return;
+    heading.textContent = BRANCHES[code] ? `Branch: ${BRANCHES[code]}` : 'Branch not selected';
+}
+
+function showBranchPicker() {
+    document.getElementById('branch-picker').classList.remove('hidden');
+    document.getElementById('menu').classList.add('hidden');
+}
+
+function showMenuArea(branchCode) {
+    saveBranchCode(branchCode);
+    setBranchHeading(branchCode);
+    document.getElementById('branch-picker').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+    const visibleMenu = getAvailableMenuData();
+    renderMenu('menu', visibleMenu);
+    attachTileHandlers(visibleMenu);
+}
+
+function attachTileHandlers(visibleMenu) {
+    document.querySelectorAll('.category-tile').forEach(tile => {
+        const idx = Number(tile.dataset.index);
+        tile.addEventListener('click', () => {
+            const group = visibleMenu[idx];
+            if (group.link) {
+                window.location.href = group.link;
+                return;
+            }
+            openCategoryPanel(idx, tile, visibleMenu);
+        });
+
+        tile.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+        });
+        tile.addEventListener('mouseleave', () => { tile.style.transform = ''; });
+    });
+}
 
 function normalizeSize(size) {
     if (Array.isArray(size)) {
@@ -97,8 +158,23 @@ function renderMenu(containerId = 'menu', data = getAvailableMenuData()) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // render as a grid of category tiles (app-home style)
+    // render branch header and menu grid
     container.innerHTML = '';
+    const header = document.createElement('div');
+    header.className = 'selected-branch-bar';
+    header.id = 'selected-branch-bar';
+    const branchText = document.createElement('div');
+    branchText.className = 'selected-branch';
+    branchText.id = 'selected-branch';
+    header.appendChild(branchText);
+    const changeButton = document.createElement('button');
+    changeButton.type = 'button';
+    changeButton.className = 'change-branch-btn';
+    changeButton.textContent = 'Change branch';
+    changeButton.addEventListener('click', () => showBranchPicker());
+    header.appendChild(changeButton);
+    container.appendChild(header);
+
     const grid = document.createElement('div');
     grid.className = 'categories-grid';
 
@@ -141,197 +217,206 @@ function renderMenu(containerId = 'menu', data = getAvailableMenuData()) {
     container.appendChild(grid);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const visibleMenu = getAvailableMenuData();
-    renderMenu('menu', visibleMenu);
+function openCategoryPanel(index, tileEl, visibleMenu) {
+    const rect = tileEl.getBoundingClientRect();
+    const panel = document.createElement('div');
+    panel.className = 'category-panel';
+    Object.assign(panel.style, {
+        position: 'fixed',
+        left: rect.left + 'px',
+        top: rect.top + 'px',
+        width: rect.width + 'px',
+        height: rect.height + 'px',
+        transition: 'all 400ms cubic-bezier(.2,.8,.2,1)',
+        zIndex: 2500,
+        borderRadius: '16px',
+    });
 
-    // Open a category in a full-screen animated panel (app style)
-    function openCategoryPanel(index, tileEl) {
-        const rect = tileEl.getBoundingClientRect();
-        const panel = document.createElement('div');
-        panel.className = 'category-panel';
-        Object.assign(panel.style, {
-            position: 'fixed',
-            left: rect.left + 'px',
-            top: rect.top + 'px',
-            width: rect.width + 'px',
-            height: rect.height + 'px',
-            transition: 'all 400ms cubic-bezier(.2,.8,.2,1)',
-            zIndex: 2500,
-            borderRadius: '16px',
-        });
+    const header = document.createElement('div'); header.className = 'panel-header';
+    const back = document.createElement('button'); back.className = 'close-btn'; back.innerText = '←';
+    back.addEventListener('click', () => closePanel(panel, rect));
+    header.appendChild(back);
+    const h = document.createElement('h2'); h.textContent = visibleMenu[index].category; header.appendChild(h);
+    panel.appendChild(header);
 
-        const header = document.createElement('div'); header.className = 'panel-header';
-        const back = document.createElement('button'); back.className = 'close-btn'; back.innerText = '←';
-        back.addEventListener('click', () => closePanel(panel, rect));
-        header.appendChild(back);
-        const h = document.createElement('h2'); h.textContent = visibleMenu[index].category; header.appendChild(h);
-        panel.appendChild(header);
+    const inner = document.createElement('div'); inner.className = 'panel-inner';
 
-        const inner = document.createElement('div'); inner.className = 'panel-inner';
+    function animateRemove(el) {
+        if (!el) return;
+        el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(6px)';
+        setTimeout(() => { if (el && el.parentNode) el.remove(); }, 200);
+    }
 
-        // helper to animate removing a card
-        function animateRemove(el) {
-            if (!el) return;
-            el.style.transition = 'transform 180ms ease, opacity 180ms ease';
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(6px)';
-            setTimeout(() => { if (el && el.parentNode) el.remove(); }, 200);
-        }
+    function animateReplaceWithList(el, catIdx, itemIdx) {
+        if (!el) return;
+        el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(6px)';
+        setTimeout(() => {
+            const newLi = makeListItem(catIdx, itemIdx);
+            if (el.parentNode) el.replaceWith(newLi);
+        }, 200);
+    }
 
-        // animate replacing a card with its list-item (title only)
-        function animateReplaceWithList(el, catIdx, itemIdx) {
-            if (!el) return;
-            el.style.transition = 'transform 180ms ease, opacity 180ms ease';
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(6px)';
-            setTimeout(() => {
-                const newLi = makeListItem(catIdx, itemIdx);
-                if (el.parentNode) el.replaceWith(newLi);
-            }, 200);
-        }
+    const list = document.createElement('div'); list.className = 'category-list';
 
-        // create a simple list of item titles for this category
-        const list = document.createElement('div'); list.className = 'category-list';
+    function makeListItem(catIdx, itemIdx) {
+        const item = visibleMenu[catIdx].items[itemIdx];
+        const li = document.createElement('div');
+        li.className = 'list-item';
+        li.dataset.catIndex = String(catIdx);
+        li.dataset.itemIndex = String(itemIdx);
+        const t = document.createElement('div'); t.className = 'title'; t.textContent = item.title;
+        const c = document.createElement('div'); c.className = 'chev'; c.textContent = '›';
+        li.appendChild(t); li.appendChild(c);
 
-        function makeListItem(catIdx, itemIdx) {
-            const item = visibleMenu[catIdx].items[itemIdx];
-            const li = document.createElement('div');
-            li.className = 'list-item';
-            li.dataset.catIndex = String(catIdx);
-            li.dataset.itemIndex = String(itemIdx);
-            const t = document.createElement('div'); t.className = 'title'; t.textContent = item.title;
-            const c = document.createElement('div'); c.className = 'chev'; c.textContent = '›';
-            li.appendChild(t); li.appendChild(c);
-
-            li.addEventListener('click', () => {
-                // if this li is already replaced by a card, ignore
-                // collapse any existing expanded card first
-                const openCard = list.querySelector('.expanded-card');
-                if (openCard) {
-                    // if openCard corresponds to this item, just collapse it
-                    if (openCard.dataset.catIndex === String(catIdx) && openCard.dataset.itemIndex === String(itemIdx)) {
-                        animateRemove(openCard);
-                        // replace with a fresh list item
-                        const newLi = makeListItem(catIdx, itemIdx);
-                        openCard.replaceWith(newLi);
-                        return;
-                    }
-                    // replace other open card with its list item
-                    const oldCat = Number(openCard.dataset.catIndex);
-                    const oldItem = Number(openCard.dataset.itemIndex);
-                    const newLiOld = makeListItem(oldCat, oldItem);
-                    openCard.replaceWith(newLiOld);
+        li.addEventListener('click', () => {
+            const openCard = list.querySelector('.expanded-card');
+            if (openCard) {
+                if (openCard.dataset.catIndex === String(catIdx) && openCard.dataset.itemIndex === String(itemIdx)) {
+                    animateRemove(openCard);
+                    const newLi = makeListItem(catIdx, itemIdx);
+                    openCard.replaceWith(newLi);
+                    return;
                 }
+                const oldCat = Number(openCard.dataset.catIndex);
+                const oldItem = Number(openCard.dataset.itemIndex);
+                const newLiOld = makeListItem(oldCat, oldItem);
+                openCard.replaceWith(newLiOld);
+            }
 
-                // replace THIS list-item with full card (no duplicate)
-                const folder = visibleMenu[catIdx].category
+            const folder = visibleMenu[catIdx].category
                 .toLowerCase()
                 .replace(/\s+/g, '-');
-                const card = createCard(item, folder);
-                card.classList.add('expanded-card');
-                card.dataset.catIndex = String(catIdx);
-                card.dataset.itemIndex = String(itemIdx);
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(6px)';
-                // clicking the expanded card collapses it back to the title-only
-                card.addEventListener('click', (ev) => {
-                    ev.stopPropagation();
-                    // replace with list item
-                    animateReplaceWithList(card, catIdx, itemIdx);
-                }, { capture: true });
-                li.replaceWith(card);
-                // immediately expand details so sizes & prices are visible
-                card.classList.add('active');
-                // animate card in
-                requestAnimationFrame(() => {
-                    card.style.transition = 'transform 220ms ease, opacity 220ms ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                });
+            const card = createCard(item, folder);
+            card.classList.add('expanded-card');
+            card.dataset.catIndex = String(catIdx);
+            card.dataset.itemIndex = String(itemIdx);
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(6px)';
+            card.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                animateReplaceWithList(card, catIdx, itemIdx);
+            }, { capture: true });
+            li.replaceWith(card);
+            card.classList.add('active');
+            requestAnimationFrame(() => {
+                card.style.transition = 'transform 220ms ease, opacity 220ms ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
             });
-
-            return li;
-        }
-
-        visibleMenu[index].items.forEach((item, iItem) => {
-            const li = makeListItem(index, iItem);
-            list.appendChild(li);
         });
 
-        inner.appendChild(list);
-        panel.appendChild(inner);
-
-        // backdrop
-        const backdrop = document.createElement('div'); backdrop.className = 'panel-backdrop';
-        // allow clicking backdrop to close
-        backdrop.addEventListener('click', () => closePanel(panel, rect));
-        document.body.appendChild(backdrop);
-        document.body.appendChild(panel);
-
-        // animate to full screen
-        requestAnimationFrame(() => {
-            backdrop.classList.add('visible');
-            Object.assign(panel.style, { left: '0px', top: '0px', width: '100vw', height: '100vh', borderRadius: '0px' });
-        });
-
-        // after panel transition finishes, reveal inner cards with JS stagger
-        setTimeout(() => {
-            panel.classList.add('open');
-            const cards = panel.querySelectorAll('.card');
-            const tTrans = 'transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease';
-            cards.forEach((c, i) => {
-                c.style.opacity = '0';
-                c.style.transform = 'translateY(12px)';
-                c.style.transition = tTrans;
-                setTimeout(() => {
-                    c.style.opacity = '1';
-                    c.style.transform = 'translateY(0)';
-                }, 60 + i * 45);
-            });
-        }, 420);
+        return li;
     }
 
-    function closePanel(panel, fromRect) {
-        // hide inner content then animate back to tile position
-        panel.classList.remove('open');
+    visibleMenu[index].items.forEach((item, iItem) => {
+        const li = makeListItem(index, iItem);
+        list.appendChild(li);
+    });
+
+    inner.appendChild(list);
+    panel.appendChild(inner);
+
+    const backdrop = document.createElement('div'); backdrop.className = 'panel-backdrop';
+    backdrop.addEventListener('click', () => closePanel(panel, rect));
+    document.body.appendChild(backdrop);
+    document.body.appendChild(panel);
+
+    requestAnimationFrame(() => {
+        backdrop.classList.add('visible');
+        Object.assign(panel.style, { left: '0px', top: '0px', width: '100vw', height: '100vh', borderRadius: '0px' });
+    });
+
+    setTimeout(() => {
+        panel.classList.add('open');
         const cards = panel.querySelectorAll('.card');
-        cards.forEach(c => { c.style.transitionDelay = '0ms'; });
-        const backdrop = document.querySelector('.panel-backdrop');
-        if (backdrop) backdrop.classList.remove('visible');
-
-        // animate back to tile position
-        requestAnimationFrame(() => {
-            Object.assign(panel.style, { left: fromRect.left + 'px', top: fromRect.top + 'px', width: fromRect.width + 'px', height: fromRect.height + 'px', borderRadius: '16px' });
+        const tTrans = 'transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease';
+        cards.forEach((c, i) => {
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(12px)';
+            c.style.transition = tTrans;
+            setTimeout(() => {
+                c.style.opacity = '1';
+                c.style.transform = 'translateY(0)';
+            }, 60 + i * 45);
         });
+    }, 420);
+}
 
-        panel.addEventListener('transitionend', function onEnd(e) {
-            if (!['width','height','left','top'].includes(e.propertyName)) return;
-            panel.removeEventListener('transitionend', onEnd);
-            if (backdrop) backdrop.remove();
-            panel.remove();
-        });
-    }
+function closePanel(panel, fromRect) {
+    panel.classList.remove('open');
+    const cards = panel.querySelectorAll('.card');
+    cards.forEach(c => { c.style.transitionDelay = '0ms'; });
+    const backdrop = document.querySelector('.panel-backdrop');
+    if (backdrop) backdrop.classList.remove('visible');
 
-    // attach click and hover handlers to tiles now that openCategoryPanel is defined
+    requestAnimationFrame(() => {
+        Object.assign(panel.style, { left: fromRect.left + 'px', top: fromRect.top + 'px', width: fromRect.width + 'px', height: fromRect.height + 'px', borderRadius: '16px' });
+    });
+
+    panel.addEventListener('transitionend', function onEnd(e) {
+        if (!['width','height','left','top'].includes(e.propertyName)) return;
+        panel.removeEventListener('transitionend', onEnd);
+        if (backdrop) backdrop.remove();
+        panel.remove();
+    });
+}
+
+function attachTileHandlers(visibleMenu) {
     document.querySelectorAll('.category-tile').forEach(tile => {
         const idx = Number(tile.dataset.index);
         tile.addEventListener('click', () => {
-    const group = visibleMenu[idx];
+            const group = visibleMenu[idx];
+            if (group.link) {
+                window.location.href = group.link;
+                return;
+            }
+            openCategoryPanel(idx, tile, visibleMenu);
+        });
 
-    // If category has a link → open it
-    if (group.link) {
-        window.location.href = group.link; 
-        return;
+        tile.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+        });
+        tile.addEventListener('mouseleave', () => { tile.style.transform = ''; });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const branchCode = getBranchCodeFromQuery() || getBranchCodeFromStorage();
+    if (branchCode) {
+        showMenuArea(branchCode);
+    } else {
+        showBranchPicker();
     }
 
-    // otherwise open menu panel
-    openCategoryPanel(idx, tile);
-});
-
-    tile.addEventListener('mouseenter', () => {
-        if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+    document.querySelectorAll('.branch-select-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const chosenBranch = button.dataset.branch;
+            if (chosenBranch && BRANCHES[chosenBranch]) {
+                showMenuArea(chosenBranch);
+            }
+        });
     });
+
+    document.querySelectorAll('.category-tile').forEach(tile => {
+        const idx = Number(tile.dataset.index);
+        tile.addEventListener('click', () => {
+            const group = visibleMenu[idx];
+
+            if (group.link) {
+                window.location.href = group.link;
+                return;
+            }
+
+            openCategoryPanel(idx, tile, visibleMenu);
+        });
+
+        tile.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(hover: hover)').matches) tile.style.transform = 'scale(1.03)';
+        });
         tile.addEventListener('mouseleave', () => { tile.style.transform = ''; });
     });
 });

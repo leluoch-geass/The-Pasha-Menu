@@ -16,8 +16,18 @@
         <img src="img/logoTrans.png" alt="Shop Logo">
     </div>
 
-    <!-- Menu rendered dynamically -->
-    <div id="menu"></div>
+    <div id="branch-picker" class="branch-picker">
+        <div class="branch-header">
+            <h1>Select your branch</h1>
+            <p>Choose Abu Hamour or Al Wakuir to view the right menu.</p>
+        </div>
+        <div class="branch-buttons">
+            <button class="branch-select-btn" data-branch="AW" type="button">Al Wakuir</button>
+            <button class="branch-select-btn" data-branch="AH" type="button">Abu Hamour</button>
+        </div>
+    </div>
+
+    <div id="menu" class="hidden"></div>
 
     <!-- ================= ADD A NEW CATEGORY BELOW ================= -->
     <!-- 
