@@ -90,8 +90,10 @@ const menuData = [
                 title: 'Sweet Mix Baklawa',
                 img: 'Mbak.png',
                 sizes: [
-                    { label: '500g', price: '70 QAR', persons: '12 - 14 pieces', branches: ['AW', 'AH'] },
-                    { label: '1kg', price: '145 QAR', persons: '20 - 28 pieces', branches: ['AW', 'AH'] }
+                    { label: '500g', price: '70 QAR', persons: '12 - 14 pieces', branches: ['AW'] },
+                    { label: '500g', price: '75 QAR', persons: '12 - 14 pieces', branches: ['AH'] },
+                    { label: '1kg', price: '145 QAR', persons: '20 - 28 pieces', branches: ['AW'] },
+                    { label: '1kg', price: '150 QAR', persons: '20 - 28 pieces', branches: ['AH'] }
                 ]
             },
             {
@@ -138,8 +140,10 @@ const menuData = [
                 title: 'Cold Baklawa',
                 img: 'Coldbak.png',
                 sizes: [
-                    { label: '500g', price: '65 QAR', persons: '9 - 12 pieces', branches: ['AW', 'AH'] },
-                    { label: '1kg', price: '130 QAR', persons: '20 - 22 pieces', branches: ['AW', 'AH'] }
+                    { label: '500g', price: '65 QAR', persons: '9 - 12 pieces', branches: ['AW'] },
+                    { label: '500g', price: '70 QAR', persons: '9 - 12 pieces', branches: ['AH'] },
+                    { label: '1kg', price: '130 QAR', persons: '20 - 22 pieces', branches: ['AW'] },
+                    { label: '1kg', price: '140 QAR', persons: '20 - 22 pieces', branches: ['AH'] }
                 ]
             },
             {
@@ -320,13 +324,13 @@ const menuData = [
     {
         category: 'Mojito',
         items: [
-            {title: 'Lemon Mojito', img: 'lemon-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Blueberry Mojito', img: 'blueberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Blackberry Mojito', img: 'blackberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Waterlemon Mojito', img: 'waterlemon-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Blue Mojito', img: 'blue-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Curacao Mojito', img: 'Curacao-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
-            {title: 'Strawberry Mojito', img: 'strawberry-mojito.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] }
+            {title: 'Lemon Mojito', img: 'lemon.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blueberry Mojito', img: 'blueberry.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blackberry Mojito', img: 'blackberry.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Watermelon Mojito', img: 'watermelon.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Blue Mojito', img: 'blue.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Curacao Mojito', img: 'Curacao.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] },
+            {title: 'Strawberry Mojito', img: 'strawberry.png', sizes: [ { label: '1 Cup', price: '18 QAR', persons: '1 person', branches: ['AW'] } ] }
         ]
     },
     {
